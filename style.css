@@ -62,3 +62,24 @@
     width: 100%;
     border-radius: 10px;
 }
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-cards {
+    margin: 20px;
+    width: 200px;
+    height: 400px;
+    background-color: rgba(60, 60, 60, 0.2);
+}
+
+.login {
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.filter {
+    display: flex;
+}
