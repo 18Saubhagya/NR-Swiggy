@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Title = () => ( 
     <a href = "/" >
@@ -11,6 +12,7 @@ const Title = () => (
 
 const Header = () => {
     const onlineStatus = useOnlineStatus();
+    const {loggedInUser} = useContext(UserContext);
 
     [btnName, setBtnName] = useState("Login");
 
@@ -33,6 +35,7 @@ const Header = () => {
                     >
                         {btnName}
                     </button>
+                    <li>{loggedInUser}</li>
                 </ul>
             </div>
         </div>
