@@ -5,9 +5,9 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) => {
         setShowIndex();
     }
     return (
-        <div>
-            <div onClick={handleClick}>
-                <span>
+        <div className="bg-gray-50 shadow-lg p-4 my-4">
+            <div className="flex justify-between cursor-pointer" onClick={handleClick}>
+                <span className="font-bold text-lg">
                     {data.title} ({data.itemCards.length})
                 </span>
                 <span>⬇️</span>
@@ -22,10 +22,12 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) => {
 export const forNestedCategory = () => {
     return ({data, showItems, setShowIndex}) => {
         return (
-            <div>
-                <span>
-                {data.title} ({data.categories.length})
-            </span>
+            <div className="bg-gray-50 shadow-lg p-4 my-4">
+                <div className="flex justify-between cursor-pointer">
+                    <span className="font-bold text-lg">
+                        {data.title} ({data.categories.length})
+                    </span>
+                </div>
             {
                 data.categories.map((c) => (
                     <RestaurantCategory key={c?.title} data={c} showItems={showItems} setShowIndex={setShowIndex}/>

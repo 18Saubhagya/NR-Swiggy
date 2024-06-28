@@ -3,10 +3,11 @@ import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Title = () => ( 
     <a href = "/" >
-        <img className = "logo" src = { LOGO_URL } alt = "Logo" />
+        <img className = "w-32" src = { LOGO_URL } alt = "Logo" />
     </a>
 );
 
@@ -16,26 +17,28 @@ const Header = () => {
 
     [btnName, setBtnName] = useState("Login");
 
+    const cartItems = useSelector((store) => store.cart.items);
+
     return (
-        <div className="header">
+        <div className="flex justify-between bg-gray-400 shadow-lg mb-2">
             <Title />
-            <div className="nav-items">
-                <ul>
-                    <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contact">Contact Us</Link></li>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li>Cart</li>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4 ">
+                    <li className="px-6 text-lg">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+                    <li className="px-6"><Link to="/">Home</Link></li>
+                    <li className="px-6"><Link to="/about">About</Link></li>
+                    <li className="px-6"><Link to="/contact">Contact Us</Link></li>
+                    <li className="px-6"><Link to="/grocery">Grocery</Link></li>
+                    <li className="px-6 font-bold text-xl"><Link to="/cart">Cart: ({cartItems.length} items)</Link></li>
                     <button 
-                        className="Login"
+                        className="Login px-6"
                         onClick={() => {
                             btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
                         }}
                     >
                         {btnName}
                     </button>
-                    <li>{loggedInUser}</li>
+                    <li  className="px-6">{loggedInUser}</li>
                 </ul>
             </div>
         </div>

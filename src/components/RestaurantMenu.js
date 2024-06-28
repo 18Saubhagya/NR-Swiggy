@@ -26,18 +26,20 @@ const RestaurantMenu = () => {
     //console.log(categories);
 
     return (
-        <div className="menu">
-            <h1>{name}</h1>
-            <p>
+        <div className="text-center">
+            <h1 className="font-bold my-4 text-2xl">{name}</h1>
+            <p className="font-bold text-lg">
                 {cuisines.join(", ")} - {costForTwoMessage}
             </p>
-            {
+            <div className="w-6/12 mx-auto my-4">
+                {
                 categories.map((category, index) => (
                     (category.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") ? 
                     <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} showItems={index === showIndex ? true : false} setShowIndex={() => setShowIndex(index)}/> : 
                     <RestaurantNested key={category?.card?.card?.title} data={category?.card?.card} showItems={index === showIndex ? true : false} setShowIndex={() => setShowIndex(index)}/>
                 )
             )}
+            </div>
         </div>
     );
 }
